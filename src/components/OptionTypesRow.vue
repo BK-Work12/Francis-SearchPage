@@ -247,4 +247,61 @@ input[type="checkbox"], input[type="radio"] {
   .pill-dropdown { min-width: 140px; padding: 8px; }
   .drop-item { font-size: 12px; padding: 8px 10px; }
 }
+
+@media (prefers-color-scheme: dark) {
+  .filter-row {
+    background: #181a20;
+  }
+  .filter-pill {
+    background: #23263a;
+    border-color: #353a50;
+    color: #e0e6f5;
+  }
+  .filter-pill.is-active {
+    border-color: #a78bfa;
+    background: #23204a;
+  }
+  .pill-label {
+    color: #a3aed6;
+    border-right-color: #353a50;
+  }
+  .is-active .pill-label {
+    color: #a78bfa;
+    border-right-color: #a78bfa;
+  }
+  .pill-value {
+    color: #e0e6f5;
+  }
+  .pill-count {
+    background: #a78bfa;
+    color: #23263a;
+  }
+  .pill-dropdown {
+    background: #23263a;
+    border-color: #a78bfa;
+    color: #e0e6f5;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+  }
+  .drop-item {
+    background: #23263a;
+    color: #e0e6f5;
+  }
+  .drop-item:hover {
+    background: #2d2e4a;
+    color: #a78bfa;
+  }
+  .drop-item input[type="checkbox"], .drop-item input[type="radio"] {
+    accent-color: #a78bfa;
+    background: #23263a;
+    color: #e0e6f5;
+  }
+  .chevron {
+    border-right-color: #a3aed6;
+    border-bottom-color: #a3aed6;
+  }
+  .chevron.open {
+    border-right-color: #a78bfa;
+    border-bottom-color: #a78bfa;
+  }
+}
 </style>

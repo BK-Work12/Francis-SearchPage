@@ -248,4 +248,116 @@ const applyFilters = () => console.log('Payload:', JSON.parse(JSON.stringify(fil
 details[open] > summary .accordion-arrow {
   transform: rotate(-135deg);
 }
+
+@media (prefers-color-scheme: dark) {
+  .mini-sidebar {
+    background: #181a23;
+    border-color: #23204a;
+    color: #e0e6f7;
+  }
+  .sidebar-header {
+    border-bottom: 1px solid #23204a;
+    background: #23204a;
+    color: #e0e6f7;
+  }
+  .status-indicator {
+    color: #a3aed6;
+  }
+  .dot {
+    background: #a78bfa;
+  }
+  .reset-link {
+    color: #a78bfa;
+  }
+  .search-box {
+    background: #23263a;
+  }
+  .search-box input {
+    background: #181a23;
+    color: #e0e6f7;
+    border-color: #23204a;
+  }
+  .accordion-body {
+    background: #181a23;
+  }
+  .filter-group {
+    border-bottom: 1px solid #23204a;
+  }
+  .filter-group summary {
+    background: #23263a;
+    color: #a3aed6;
+  }
+  .filter-group summary:hover {
+    background: #23204a;
+  }
+  .filter-group .label {
+    color: #a3aed6;
+  }
+  .badge {
+    background: #a78bfa;
+    color: #23204a;
+  }
+  .content {
+    background: #23263a;
+    color: #e0e6f7;
+  }
+  .mini-input-group label {
+    color: #a3aed6;
+  }
+  .chip-wall {
+    border: 1px solid #23204a;
+    background: #181a23;
+  }
+  .mini-chip {
+    background: #23204a;
+    color: #a78bfa;
+  }
+  .mini-chip i {
+    color: #a3aed6;
+  }
+  .chip-wall input {
+    background: #181a23;
+    color: #e0e6f7;
+  }
+  .mini-scroll-list {
+    border: 1px solid #23204a;
+    background: #181a23;
+  }
+  .list-row {
+    color: #e0e6f7;
+  }
+  .list-row.selected {
+    background: #23204a;
+    color: #a78bfa;
+  }
+  .mini-uda-row {
+    border-bottom: 1px solid #23204a;
+  }
+  .uda-text {
+    color: #a3aed6;
+  }
+  .micro-tri-state {
+    background: #23204a;
+  }
+  .micro-tri-state button {
+    color: #a3aed6;
+  }
+  .micro-tri-state button.active {
+    background: #a78bfa;
+    color: #23204a;
+  }
+  .sidebar-footer {
+    border-top: 1px solid #23204a;
+    background: #23204a;
+  }
+  .apply-btn {
+    background: #a78bfa;
+    color: #23204a;
+  }
+  .accordion-arrow {
+    border-right: 2px solid #a78bfa;
+    border-bottom: 2px solid #a78bfa;
+  }
+}
 </style>
+

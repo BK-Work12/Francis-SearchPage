@@ -38,15 +38,14 @@
 
     <div class="checkbox-strip">
       <template v-if="viewType === 'Summary'">
-        <label class="pill-check"><input type="checkbox" v-model="useGrid" /> <span>Use Grid</span></label>
-        <label class="pill-check"><input type="checkbox" v-model="showChart" /> <span>Show Chart</span></label>
+        <label class="checkbox-item"><input type="checkbox" v-model="useGrid" /> <span>Use Grid</span></label>
+        <label class="checkbox-item"><input type="checkbox" v-model="showChart" /> <span>Show Chart</span></label>
       </template>
-      
       <template v-else>
-        <label class="pill-check"><input type="checkbox" v-model="showTotals" /> <span>Totals</span></label>
-        <label class="pill-check"><input type="checkbox" v-model="showIcons" /> <span>Icons</span></label>
-        <label class="pill-check"><input type="checkbox" v-model="defaultToggle" /> <span>Toggle</span></label>
-        <label class="pill-check"><input type="checkbox" v-model="putLastAttribOnNextRow" /> <span>Wrap Last Col</span></label>
+        <label class="checkbox-item"><input type="checkbox" v-model="showTotals" /> <span>Totals</span></label>
+        <label class="checkbox-item"><input type="checkbox" v-model="showIcons" /> <span>Icons</span></label>
+        <label class="checkbox-item"><input type="checkbox" v-model="defaultToggle" /> <span>Toggle</span></label>
+        <label class="checkbox-item"><input type="checkbox" v-model="putLastAttribOnNextRow" /> <span>Wrap Last Col</span></label>
       </template>
     </div>
 
@@ -340,6 +339,56 @@ const toggleCol = (val) => {
 }
 .remove-chip { cursor: pointer; font-size: 14px; color: #9ca3af; }
 
+/* Checkbox Strip Styles */
+.checkbox-strip {
+  display: flex;
+  gap: 12px;
+  margin: 18px 0 12px 0;
+  flex-wrap: wrap;
+}
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #64748b;
+  background: #f3f4f6;
+  border-radius: 6px;
+  padding: 4px 12px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.checkbox-item input[type="checkbox"] {
+  accent-color: #7c4dff;
+  margin-right: 4px;
+}
+.checkbox-item:hover {
+  background: #ede9fe;
+}
+.checkbox-item input[type="checkbox"]:checked ~ span {
+  color: #7c4dff;
+}
+
+@media (prefers-color-scheme: dark) {
+  .checkbox-strip {
+    background: transparent;
+  }
+  .checkbox-item {
+    background: #23263a;
+    color: #a3aed6;
+  }
+  .checkbox-item:hover {
+    background: #23204a;
+  }
+  .checkbox-item input[type="checkbox"] {
+    accent-color: #a78bfa;
+  }
+  .checkbox-item input[type="checkbox"]:checked ~ span {
+    color: #a78bfa;
+  }
+}
+
 /* Modal */
 .modal-overlay {
   position: fixed; inset: 0; background: rgba(0,0,0,0.5);
@@ -368,6 +417,98 @@ const toggleCol = (val) => {
 .grid-item.selected { color: #4f46e5; font-weight: 500; }
 .modal-footer { padding: 1rem; border-top: 1px solid #f3f4f6; text-align: right; }
 .primary-btn { background: #4f46e5; color: #fff; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; }
+.checkbox-strip input{
+  width: unset;
+}
+@media (prefers-color-scheme: dark) {
+  .view-format-card {
+    background: #181a20;
+    color: #e0e6f5;
+  }
+  .header-row, .settings-bar {
+    background: #23263a;
+  }
+  .main-toggle button {
+    background: #23263a;
+    color: #a3aed6;
+    border-color: #353a50;
+  }
+  .main-toggle button.active {
+    background: #23204a;
+    color: #a78bfa;
+    border-color: #a78bfa;
+  }
+  .style-select, .sort-logic, .per-page-logic {
+    color: #a3aed6;
+  }
+  .tiny-label, .text-label {
+    color: #a3aed6;
+  }
+  .minimal-input {
+    background: #23263a;
+    color: #e0e6f5;
+    border-color: #353a50;
+  }
+  .minimal-input option {
+    background: #23263a;
+    color: #e0e6f5;
+  }
+  .pill-check span {
+    color: #e0e6f5;
+  }
+  .pill-check input[type="checkbox"]:checked ~ span {
+    background: #a78bfa;
+    color: #23263a;
+  }
+  .column-section {
+    background: #23263a;
+    border-color: #353a50;
+  }
+  .section-header {
+    color: #a3aed6;
+  }
+  .section-label {
+    color: #a3aed6;
+  }
+  .edit-btn {
+    color: #a78bfa;
+  }
+  .chip {
+    background: #23204a;
+    color: #a78bfa;
+  }
+  .remove-chip {
+    color: #f472b6;
+  }
+  .modal-overlay {
+    background: rgba(0,0,0,0.7);
+  }
+  .modal-window {
+    background: #23263a;
+    color: #e0e6f5;
+  }
+  .modal-header, .modal-footer {
+    border-color: #353a50;
+  }
+  .search-bar {
+    background: #23263a;
+    color: #e0e6f5;
+    border-color: #353a50;
+  }
+  .grid-item {
+    background: #23263a;
+    border-color: #353a50;
+    color: #e0e6f5;
+  }
+  .grid-item.selected {
+    color: #a78bfa;
+    background: #23204a;
+  }
+  .primary-btn {
+    background: #a78bfa;
+    color: #23263a;
+  }
+}
 
 .fade-enter-active, .fade-leave-active { transition: opacity 0.2s; }
 .fade-enter-from, .fade-leave-to { opacity: 0; }

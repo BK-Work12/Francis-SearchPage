@@ -302,5 +302,131 @@ const onSearch = () => console.log("Final Filter Payload:", JSON.parse(JSON.stri
 details[open] > summary .accordion-arrow {
   transform: rotate(-135deg);
 }
-
+@media (prefers-color-scheme: dark) {
+  .mini-filter-system {
+    background: #181a23;
+    color: #e0e6f7;
+  }
+  .mini-header {
+    background: #23204a;
+    color: #e0e6f7;
+  }
+  .brand .dot-indicator {
+    background: #4ade80;
+  }
+  .count-badge {
+    background: rgba(255,255,255,0.12);
+    color: #c7d2fe;
+  }
+  .header-actions .text-btn {
+    color: #e0e6f7;
+  }
+  .header-actions .apply-btn {
+    background: #a78bfa;
+    color: #23204a;
+  }
+  .main-search-container {
+    background: #23263a;
+    border-bottom: 1px solid #23204a;
+  }
+  .global-search-input {
+    background: #181a23;
+    color: #e0e6f7;
+    border-color: #23204a;
+  }
+  .global-search-input:focus {
+    border-color: #a78bfa;
+  }
+  .accordion-container {
+    background: #181a23;
+  }
+  .filter-section {
+    border-bottom: 1px solid #23204a;
+  }
+  .filter-section summary {
+    background: #23263a;
+    color: #a3aed6;
+  }
+  .filter-section summary:hover {
+    background: #23204a;
+  }
+  .section-content {
+    background: #23263a;
+    border: 1px solid #23204a;
+    color: #e0e6f7;
+    box-shadow: 0 2px 8px 0 rgba(30,40,60,0.18);
+  }
+  .mini-tag {
+    background: #23204a;
+    color: #a78bfa;
+  }
+  .mini-tag i {
+    color: #a3aed6;
+  }
+  .tag-wrap {
+    border: 1px solid #23204a;
+    background: #181a23;
+  }
+  .tag-wrap input {
+    background: #181a23;
+    color: #e0e6f7;
+  }
+  .compact-multi, .compact-multi-small {
+    background: #181a23;
+    color: #e0e6f7;
+    border: 1px solid #23204a;
+  }
+  .mini-toggle-box {
+    border: 1px solid #23204a;
+    background: #23263a;
+  }
+  .tiny-label {
+    color: #a3aed6;
+  }
+  .micro-tri-state {
+    background: #23204a;
+  }
+  .micro-tri-state button {
+    color: #a3aed6;
+  }
+  .micro-tri-state button.active {
+    background: #a78bfa;
+    color: #23204a;
+  }
+  .list-container {
+    border: 1px solid #23204a;
+    background: #181a23;
+  }
+  .inner-search {
+    background: #23263a;
+    color: #e0e6f7;
+    border-bottom: 1px solid #23204a;
+  }
+  .micro-scroll {
+    background: #181a23;
+  }
+  .list-row {
+    color: #e0e6f7;
+  }
+  .list-row:hover {
+    background: #23204a;
+  }
+  .mini-area {
+    background: #181a23;
+    color: #e0e6f7;
+    border: 1px solid #23204a;
+  }
+  .inline-checks label {
+    color: #a3aed6;
+  }
+  .legacy-wrapper {
+    background: #181a23;
+  }
+  .accordion-arrow {
+    border-right: 2px solid #a78bfa;
+    border-bottom: 2px solid #a78bfa;
+  }
+}
 </style>
+
+

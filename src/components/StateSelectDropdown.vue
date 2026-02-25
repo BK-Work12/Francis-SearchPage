@@ -363,6 +363,88 @@ input[type="checkbox"] { accent-color: #7c4dff; }
   .options-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
+@media (prefers-color-scheme: dark) {
+  .filter-pill {
+    background: #23263a;
+    border-color: #353a50;
+    color: #e0e6f5;
+  }
+  .filter-pill.is-active {
+    border-color: #a78bfa;
+    background: #23204a;
+  }
+  .pill-label {
+    color: #a3aed6;
+    border-right-color: #353a50;
+  }
+  .is-active .pill-label {
+    color: #a78bfa;
+    border-right-color: #a78bfa;
+  }
+  .pill-value {
+    color: #e0e6f5;
+  }
+  .pill-placeholder {
+    color: #64748b;
+  }
+  .pill-chevron {
+    border-right-color: #a3aed6;
+    border-bottom-color: #a3aed6;
+  }
+  .pill-chevron.is-open {
+    border-right-color: #a78bfa;
+    border-bottom-color: #a78bfa;
+  }
+  .state-dropdown {
+    background: #23263a;
+    border-color: #a78bfa;
+    color: #e0e6f5;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+  }
+  .dropdown-header {
+    border-bottom-color: #353a50;
+  }
+  .chip {
+    background: #2d2e4a;
+    color: #a78bfa;
+  }
+  .chip-remove {
+    color: #f472b6;
+  }
+  .chip-remove:hover {
+    color: #f43f5e;
+  }
+  .group-title {
+    color: #a3aed6;
+  }
+  .option-item {
+    background: transparent;
+    color: #e0e6f5;
+  }
+  .option-item.selected {
+    background: #23204a;
+    color: #a78bfa;
+  }
+  .option-item:hover {
+    background: #2d2e4a;
+    color: #a78bfa;
+  }
+  .option-name {
+    color: #e0e6f5;
+  }
+  .no-results {
+    color: #f472b6;
+  }
+  .text-btn {
+    color: #a78bfa;
+  }
+  .inner-search.adv-search {
+    background: #23263a;
+    color: #e0e6f5;
+    border-bottom-color: #353a50;
+  }
+}
+
 .remove-btn {
   color: #ef4444;
   font-weight: bold;

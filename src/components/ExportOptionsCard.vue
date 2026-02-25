@@ -185,4 +185,57 @@ const autoExpand = (e) => {
   .dynamic-inputs { width: 100%; }
   .input-pill { flex: 1; }
 }
+
+@media (prefers-color-scheme: dark) {
+  .export-system {
+    background: #181a20;
+  }
+  .filter-pill {
+    background: #23263a;
+    border-color: #353a50;
+    color: #e0e6f5;
+  }
+  .filter-pill.is-active, .checkbox-pill.is-active {
+    border-color: #a78bfa;
+    background: #23204a;
+  }
+  .pill-label {
+    color: #a3aed6;
+    border-right-color: #353a50;
+  }
+  .is-active .pill-label {
+    color: #a78bfa;
+    border-right-color: #a78bfa;
+  }
+  .pill-select, .input-pill input {
+    background: transparent;
+    color: #e0e6f5;
+  }
+  .pill-select option {
+    background: #23263a;
+    color: #e0e6f5;
+  }
+  .checkbox-pill input {
+    accent-color: #a78bfa;
+  }
+  .segmented-control {
+    background: #23263a;
+  }
+  .segment {
+    color: #a3aed6;
+  }
+  .segment.is-active {
+    background: #23204a;
+    color: #a78bfa;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+  .message-container {
+    background: #23263a;
+    border-color: #a78bfa;
+  }
+  .message-container textarea {
+    background: transparent;
+    color: #e0e6f5;
+  }
+}
 </style>

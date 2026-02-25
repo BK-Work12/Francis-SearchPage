@@ -247,4 +247,125 @@ const applyFilters = () => console.log("Final:", JSON.parse(JSON.stringify(filte
 details[open] > summary .accordion-arrow {
   transform: rotate(-135deg);
 }
+
+@media (prefers-color-scheme: dark) {
+  .mini-adv-sidebar {
+    background: #181a23;
+    border-color: #23204a;
+    color: #e0e6f7;
+  }
+  .sidebar-header {
+    border-bottom: 1px solid #23204a;
+    background: #23204a;
+    color: #e0e6f7;
+  }
+  .brand .active-dot {
+    background: #a78bfa;
+  }
+  .brand h1 {
+    color: #e0e6f7;
+  }
+  .reset-link {
+    color: #a3aed6;
+  }
+  .global-search-wrapper {
+    background: #23263a;
+    border-bottom: 1px solid #23204a;
+  }
+  .global-search-input {
+    background: #181a23;
+    color: #e0e6f7;
+    border-color: #23204a;
+  }
+  .global-search-input:focus {
+    border-color: #a78bfa;
+    background: #23263a;
+    box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.12);
+  }
+  .accordion-container {
+    background: #181a23;
+  }
+  .mini-card {
+    border-bottom: 1px solid #23204a;
+  }
+  .mini-card summary {
+    background: #23263a;
+    color: #a3aed6;
+  }
+  .mini-card summary:hover {
+    background: #23204a;
+  }
+  .card-inner {
+    background: #23263a;
+    color: #e0e6f7;
+  }
+  .field label {
+    color: #a3aed6;
+  }
+  .mini-tag-box {
+    border: 1px solid #23204a;
+    background: #181a23;
+  }
+  .mini-tag {
+    background: #23204a;
+    color: #a78bfa;
+  }
+  .mini-tag b {
+    color: #a3aed6;
+  }
+  .mini-tag-box input {
+    background: #181a23;
+    color: #e0e6f7;
+  }
+  .mini-search-list {
+    border: 1px solid #23204a;
+    background: #181a23;
+  }
+  .inner-search {
+    background: #23263a;
+    color: #e0e6f7;
+    border-bottom: 1px solid #23204a;
+  }
+  .scroll-box {
+    background: #181a23;
+  }
+  .row {
+    color: #e0e6f7;
+  }
+  .row:hover {
+    background: #23204a;
+  }
+  .row.selected {
+    background: #23204a;
+    color: #a78bfa;
+  }
+  .mini-segmented {
+    background: #23204a;
+  }
+  .mini-segmented button {
+    color: #a3aed6;
+  }
+  .mini-segmented button.active {
+    background: #a78bfa;
+    color: #23204a;
+  }
+  .mini-select {
+    background: #181a23;
+    color: #e0e6f7;
+    border: 1px solid #23204a;
+  }
+  .sidebar-footer {
+    border-top: 1px solid #23204a;
+    background: #23204a;
+  }
+  .btn-apply {
+    background: #a78bfa;
+    color: #23204a;
+  }
+  .accordion-arrow {
+    border-right: 2px solid #a78bfa;
+    border-bottom: 2px solid #a78bfa;
+  }
+}
 </style>
+

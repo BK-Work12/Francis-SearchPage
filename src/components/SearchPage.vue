@@ -527,4 +527,132 @@ html, body {
   background: #646cff;
   color: #fff;
 }
+@media (prefers-color-scheme: dark) {
+  .modern-bg {
+    background: #181a23;
+    color: #e0e6f7;
+  }
+  .glass {
+    background: #23263a;
+    box-shadow: 0 2px 16px 0 rgba(30, 40, 60, 0.18);
+    border: 1px solid #23204a;
+    color: #e0e6f7;
+  }
+  .header-row {
+    color: #e0e6f7;
+  }
+  .logo-icon {
+    box-shadow: 0 2px 8px #23204a;
+  }
+  .title {
+    color: #a3aed6;
+  }
+  .search-bar-outer {
+    background: #23263a;
+    box-shadow: 0 1px 6px #23204a;
+    border: 1.2px solid #fff;
+  }
+  .search-bar-outer.focused {
+    box-shadow: 0 2px 12px #a78bfa44;
+    border-color: #a78bfa;
+  }
+  .search-input {
+    color: #e0e6f7;
+  }
+  .search-input::placeholder {
+    color: #7c7fa6;
+  }
+  .search-btn {
+    background: #a78bfa;
+    color: #23204a;
+    box-shadow: 0 1px 6px #23204a;
+  }
+  .search-btn:hover {
+    background: #7c4dff;
+    color: #fff;
+    box-shadow: 0 2px 10px #a78bfa44;
+  }
+  .options-row {
+    color: #e0e6f7;
+  }
+  .option-label {
+    background: #23263a;
+    color: #a3aed6;
+  }
+  .option-label input[type="checkbox"] {
+    accent-color: #a78bfa;
+  }
+  .option-label .bold {
+    color: #fff;
+  }
+  .save-tabs {
+    background: #23263a;
+    color: #a78bfa;
+  }
+  .save-tabs:active {
+    background: #a78bfa;
+    color: #23204a;
+  }
+  .date-inputs-card {
+    background: #23263a;
+    border: 1px solid #23204a;
+    color: #e0e6f7;
+  }
+  .date-heading {
+    color: #a78bfa;
+  }
+  .view-format-section {
+    background: #23263a;
+    border: 1px solid #23204a;
+    color: #e0e6f7;
+  }
+  .view-format-heading {
+    color: #a78bfa;
+  }
+  .columns-select {
+    background: #181a23;
+    color: #e0e6f7;
+    border: 1px solid #23204a;
+  }
+  .column-buttons button {
+    background: #23263a;
+    color: #a78bfa;
+    border: 1px solid #23204a;
+  }
+  .column-buttons button:hover {
+    background: #a78bfa;
+    color: #23204a;
+  }
+  .result-btn-row {
+    /* no change needed */
+  }
+  .result-btn {
+    background: #23263a;
+    color: #a3aed6;
+    border: 1.5px solid #23204a;
+    box-shadow: 0 1px 6px #23204a;
+  }
+  .result-btn.show-btn {
+    background: #a78bfa;
+    color: #23204a;
+    border-color: #a78bfa;
+  }
+  .result-btn.show-btn:hover {
+    background: #7c4dff;
+    color: #fff;
+    border-color: #7c4dff;
+  }
+  .result-btn.reset-btn {
+    background: #23263a;
+    color: #ef4444;
+    border-color: #ef4444;
+  }
+  .result-btn.reset-btn:hover {
+    background: #3b1a1a;
+    color: #fff;
+    border-color: #b91c1c;
+  }
+}
 </style>
+
+

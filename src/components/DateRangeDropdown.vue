@@ -261,4 +261,59 @@ onBeforeUnmount(() => document.removeEventListener('mousedown', closePopups));
   .manual-group { border-left: none; padding-left: 0; width: 100%; }
   .filter-pill { flex: 1; min-width: 140px; }
 }
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .filter-container {
+    background: #181a20;
+  }
+  .filter-bar, .manual-group {
+    border-left-color: #23263a;
+  }
+  .filter-pill {
+    background: #23263a;
+    border-color: #353a50;
+    color: #e0e6f5;
+  }
+  .filter-pill.is-active {
+    background: #23204a;
+    border-color: #a78bfa;
+  }
+  .pill-label {
+    color: #a3aed6;
+    border-right-color: #353a50;
+  }
+  .is-active .pill-label {
+    color: #a78bfa;
+    border-right-color: #a78bfa;
+  }
+  .pill-select, .calendar-pill input {
+    background: transparent;
+    color: #e0e6f5;
+  }
+  .pill-select option,
+  .pill-select optgroup {
+    background: #23263a;
+    color: #e0e6f5;
+  }
+  .calendar-popup {
+    background: #23263a;
+    border-color: #a78bfa;
+    color: #e0e6f5;
+    box-shadow: 0 10px 25px -5px rgba(0,0,0,0.7);
+  }
+  .calendar-header {
+    color: #a78bfa;
+  }
+  .calendar-table td {
+    color: #e0e6f5;
+  }
+  .calendar-table td:hover:not(.empty) {
+    background: #2d2e4a;
+    color: #a78bfa;
+  }
+  .calendar-table td.selected {
+    background: #a78bfa;
+    color: #23263a;
+  }
+}
 </style>
