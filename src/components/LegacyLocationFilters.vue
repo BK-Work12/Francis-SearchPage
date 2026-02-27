@@ -165,12 +165,14 @@ const applyFilters = () => console.log('Payload:', JSON.parse(JSON.stringify(fil
 </script>
 
 <style scoped>
+/* AMBER/ORANGE MINI-SIDEBAR THEME */
 .mini-sidebar {
   background: #fff; border: 1px solid #e2e8f0; border-radius: 8px;
   display: flex; flex-direction: column; height: 100%; font-family: 'Inter', sans-serif;
 }
 .list-row input {
   width: unset;
+  accent-color: #faa643;
 }
 .sidebar-header {
   padding: 12px 16px; display: flex; justify-content: space-between; align-items: center;
@@ -178,12 +180,13 @@ const applyFilters = () => console.log('Payload:', JSON.parse(JSON.stringify(fil
 }
 .status-indicator { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; color: #64748b; font-weight: 600; }
 .dot { width: 6px; height: 6px; background: #10b981; border-radius: 50%; }
-.reset-link { background: none; border: none; color: #7c4dff; cursor: pointer; font-size: 0.7rem; font-weight: 700; }
+.reset-link { background: none; border: none; color: #faa643; cursor: pointer; font-size: 0.7rem; font-weight: 700; }
 
 .search-box { padding: 8px 12px; }
 .search-box input {
-  width: 100%; max-width: 200px; padding: 6px 10px; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 0.8rem;
+  width: 100%; max-width: 200px; padding: 6px 10px; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 0.8rem; outline: none;
 }
+.search-box input:focus { border-color: #faa643; }
 
 .accordion-body { flex: 1; overflow-y: auto; }
 
@@ -194,7 +197,7 @@ const applyFilters = () => console.log('Payload:', JSON.parse(JSON.stringify(fil
 }
 .filter-group summary::-webkit-details-marker { display: none; }
 .filter-group .label { font-size: 0.75rem; font-weight: 700; color: #475569; text-transform: uppercase; }
-.badge { background: #7c4dff; color: #fff; font-size: 0.65rem; padding: 1px 6px; border-radius: 10px; }
+.badge { background: #faa643; color: #fff; font-size: 0.65rem; padding: 1px 6px; border-radius: 10px; }
 
 .content {
    padding: 12px 16px; 
@@ -208,14 +211,14 @@ const applyFilters = () => console.log('Payload:', JSON.parse(JSON.stringify(fil
   border: 1px solid #e2e8f0; border-radius: 4px; padding: 4px; display: flex; flex-wrap: wrap; gap: 4px;
 }
 .mini-chip {
-  background: #f1f5f9; color: #475569; padding: 2px 6px; border-radius: 3px; font-size: 0.7rem; display: flex; align-items: center;
+  background: #fff8ef; color: #faa643; padding: 2px 6px; border-radius: 3px; font-size: 0.7rem; display: flex; align-items: center; border: 1px solid #ffedd5;
 }
 .mini-chip i { margin-left: 4px; cursor: pointer; font-style: normal; font-weight: bold; }
 .chip-wall input { border: none; outline: none; font-size: 0.75rem; flex: 1; min-width: 60px; }
 
 .mini-scroll-list { border: 1px solid #e2e8f0; max-height: 120px; overflow-y: auto; border-radius: 4px; }
 .list-row { padding: 4px 8px; font-size: 0.75rem; display: flex; gap: 8px; cursor: pointer; }
-.list-row.selected { background: #f3f0ff; color: #7c4dff; }
+.list-row.selected { background: #fff8ef; color: #faa643; font-weight: 600; }
 
 .mini-uda-row {
   display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid #f8fafc;
@@ -226,20 +229,22 @@ const applyFilters = () => console.log('Payload:', JSON.parse(JSON.stringify(fil
 .micro-tri-state button {
   flex: 1; border: none; background: transparent; padding: 3px 0; font-size: 0.65rem; cursor: pointer; color: #94a3b8;
 }
-.micro-tri-state button.active { background: #fff; color: #7c4dff; font-weight: bold; border-radius: 3px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+.micro-tri-state button.active { background: #fff; color: #faa643; font-weight: bold; border-radius: 3px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
 
 .sidebar-footer { padding: 12px; border-top: 1px solid #e2e8f0; }
 .apply-btn {
-  width: 100%; background: #7c4dff; color: #fff; border: none; padding: 8px; border-radius: 6px; font-weight: 700; font-size: 0.8rem; cursor: pointer;
+  width: 100%; background: #faa643; color: #fff; border: none; padding: 8px; border-radius: 6px; font-weight: 700; font-size: 0.8rem; cursor: pointer; transition: background 0.2s;
 }
+.apply-btn:hover { background: #e89532; }
+
 /* Accordion arrow styles */
 .accordion-arrow {
   display: inline-block;
   width: 10px;
   height: 10px;
   margin-right: 8px;
-  border-right: 2px solid #7c4dff;
-  border-bottom: 2px solid #7c4dff;
+  border-right: 2px solid #faa643;
+  border-bottom: 2px solid #faa643;
   transform: rotate(45deg);
   transition: transform 0.2s;
   position: relative;
@@ -264,10 +269,10 @@ details[open] > summary .accordion-arrow {
     color: #a3aed6;
   }
   .dot {
-    background: #a78bfa;
+    background: #faa643;
   }
   .reset-link {
-    color: #a78bfa;
+    color: #faa643;
   }
   .search-box {
     background: #23263a;
@@ -276,6 +281,9 @@ details[open] > summary .accordion-arrow {
     background: #181a23;
     color: #e0e6f7;
     border-color: #23204a;
+  }
+  .search-box input:focus {
+    border-color: #faa643;
   }
   .accordion-body {
     background: #181a23;
@@ -294,7 +302,7 @@ details[open] > summary .accordion-arrow {
     color: #a3aed6;
   }
   .badge {
-    background: #a78bfa;
+    background: #faa643;
     color: #23204a;
   }
   .content {
@@ -310,7 +318,8 @@ details[open] > summary .accordion-arrow {
   }
   .mini-chip {
     background: #23204a;
-    color: #a78bfa;
+    color: #faa643;
+    border-color: #353a50;
   }
   .mini-chip i {
     color: #a3aed6;
@@ -328,7 +337,7 @@ details[open] > summary .accordion-arrow {
   }
   .list-row.selected {
     background: #23204a;
-    color: #a78bfa;
+    color: #faa643;
   }
   .mini-uda-row {
     border-bottom: 1px solid #23204a;
@@ -343,7 +352,7 @@ details[open] > summary .accordion-arrow {
     color: #a3aed6;
   }
   .micro-tri-state button.active {
-    background: #a78bfa;
+    background: #faa643;
     color: #23204a;
   }
   .sidebar-footer {
@@ -351,12 +360,12 @@ details[open] > summary .accordion-arrow {
     background: #23204a;
   }
   .apply-btn {
-    background: #a78bfa;
+    background: #faa643;
     color: #23204a;
   }
   .accordion-arrow {
-    border-right: 2px solid #a78bfa;
-    border-bottom: 2px solid #a78bfa;
+    border-right: 2px solid #faa643;
+    border-bottom: 2px solid #faa643;
   }
 }
 </style>

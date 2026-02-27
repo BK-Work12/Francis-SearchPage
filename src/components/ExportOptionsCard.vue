@@ -1,4 +1,5 @@
 <template>
+  <div class="export-options-heading">Export Options</div>
   <div class="export-system">
     <div class="filter-row">
       <div class="filter-pill">
@@ -103,6 +104,9 @@ const autoExpand = (e) => {
   gap: 8px;
   align-items: center;
 }
+.filter-pill.checkbox-pill input{
+width: unset;
+}
 
 /* REUSING YOUR PILL THEME */
 .filter-pill {
@@ -135,8 +139,8 @@ const autoExpand = (e) => {
 }
 
 .checkbox-pill { cursor: pointer; }
-.checkbox-pill.is-active { border-color: #7c4dff; background: #f5f3ff; }
-.checkbox-pill input { margin-right: 8px; accent-color: #7c4dff; }
+.checkbox-pill.is-active { border-color: #faa643; background: #fff8ef; }
+.checkbox-pill input { margin-right: 8px; accent-color: #faa643; }
 
 /* SEGMENTED TOGGLE (Better than separate Radios) */
 .segmented-control {
@@ -157,7 +161,7 @@ const autoExpand = (e) => {
 }
 
 .segment input { display: none; }
-.segment.is-active { background: #fff; color: #7c4dff; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+.segment.is-active { background: #fff; color: #faa643; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
 
 /* MESSAGE AREA */
 .message-container {
@@ -196,7 +200,7 @@ const autoExpand = (e) => {
     color: #e0e6f5;
   }
   .filter-pill.is-active, .checkbox-pill.is-active {
-    border-color: #a78bfa;
+    border-color: #faa643;
     background: #23204a;
   }
   .pill-label {
@@ -204,8 +208,8 @@ const autoExpand = (e) => {
     border-right-color: #353a50;
   }
   .is-active .pill-label {
-    color: #a78bfa;
-    border-right-color: #a78bfa;
+    color: #faa643;
+    border-right-color: #faa643;
   }
   .pill-select, .input-pill input {
     background: transparent;
@@ -216,7 +220,7 @@ const autoExpand = (e) => {
     color: #e0e6f5;
   }
   .checkbox-pill input {
-    accent-color: #a78bfa;
+    accent-color: #faa643;
   }
   .segmented-control {
     background: #23263a;
@@ -226,16 +230,27 @@ const autoExpand = (e) => {
   }
   .segment.is-active {
     background: #23204a;
-    color: #a78bfa;
+    color: #faa643;
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   }
   .message-container {
     background: #23263a;
-    border-color: #a78bfa;
+    border-color: #faa643;
   }
   .message-container textarea {
     background: transparent;
     color: #e0e6f5;
   }
+}
+</style>
+<style scoped>
+.export-options-heading {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #147393;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  letter-spacing: 0.01em;
+  font-family: 'Inter', -apple-system, sans-serif;
 }
 </style>

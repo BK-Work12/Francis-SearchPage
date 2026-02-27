@@ -178,6 +178,7 @@ const applyFilters = () => console.log("Final:", JSON.parse(JSON.stringify(filte
 </script>
 
 <style scoped>
+/* AMBER/ORANGE ADVANCED SIDEBAR THEME */
 .mini-adv-sidebar {
   background: #fff; border: 1px solid #e2e8f0; border-radius: 8px;
   display: flex; flex-direction: column; font-family: 'Inter', sans-serif;
@@ -187,7 +188,7 @@ const applyFilters = () => console.log("Final:", JSON.parse(JSON.stringify(filte
   border-bottom: 1px solid #f1f5f9;
 }
 .brand { display: flex; align-items: center; gap: 8px; }
-.active-dot { width: 6px; height: 6px; background: #7c4dff; border-radius: 50%; }
+.active-dot { width: 6px; height: 6px; background: #faa643; border-radius: 50%; }
 .brand h1 { font-size: 0.85rem; font-weight: 700; color: #1e293b; margin: 0; }
 .reset-link { background: none; border: none; color: #64748b; font-size: 0.7rem; font-weight: 600; cursor: pointer; }
 
@@ -197,7 +198,7 @@ const applyFilters = () => console.log("Final:", JSON.parse(JSON.stringify(filte
   font-size: 0.75rem; background: #fcfcfc; outline: none; transition: all 0.2s ease;
   max-width: 200px;
 }
-.global-search-input:focus { border-color: #7c4dff; background: #fff; box-shadow: 0 0 0 3px rgba(124, 77, 255, 0.1); }
+.global-search-input:focus { border-color: #faa643; background: #fff; box-shadow: 0 0 0 3px rgba(250, 166, 67, 0.1); }
 
 .accordion-container { max-height: 70vh; overflow-y: auto; }
 .mini-card { border-bottom: 1px solid #f1f5f9; }
@@ -211,34 +212,37 @@ const applyFilters = () => console.log("Final:", JSON.parse(JSON.stringify(filte
 .field label { display: block; font-size: 0.7rem; font-weight: 600; color: #94a3b8; margin-bottom: 4px; text-transform: uppercase; }
 
 .mini-tag-box { border: 1px solid #e2e8f0; border-radius: 4px; padding: 4px; display: flex; flex-wrap: wrap; gap: 4px; min-height: 40px; }
-.mini-tag { background: #ede7f6; color: #7c4dff; font-size: 0.65rem; padding: 1px 6px; border-radius: 3px; display: flex; align-items: center; gap: 4px; }
-.mini-tag b { cursor: pointer; font-style: normal; }
+.mini-tag { background: #fff8ef; color: #faa643; font-size: 0.65rem; padding: 1px 6px; border-radius: 3px; display: flex; align-items: center; gap: 4px; border: 1px solid #ffedd5; }
+.mini-tag b { cursor: pointer; font-style: normal; font-weight: bold; }
 .mini-tag-box input { border: none; outline: none; font-size: 0.75rem; flex: 1; min-width: 50px; }
 
 .mini-search-list { border: 1px solid #e2e8f0; border-radius: 4px; overflow: hidden; }
 .inner-search { width: 100%; border: none; border-bottom: 1px solid #e2e8f0; padding: 5px 8px; font-size: 0.75rem; background: #f8fafc; }
 .scroll-box { height: 120px; overflow-y: auto; }
 .row { padding: 4px 8px; font-size: 0.75rem; display: flex; align-items: center; gap: 6px; cursor: pointer; }
-.row:hover { background: #f3f0ff; }
-.row.selected { background: #ede7f6; color: #7c4dff; font-weight: 600; }
-.row input { width: unset; }
+.row:hover { background: #fff8ef; }
+.row.selected { background: #fff8ef; color: #faa643; font-weight: 600; }
+.row input { width: unset; accent-color: #faa643; }
 
 .mini-segmented { display: flex; background: #f1f5f9; padding: 2px; border-radius: 4px; }
 .mini-segmented button { flex: 1; border: none; background: transparent; padding: 4px; font-size: 0.7rem; border-radius: 3px; cursor: pointer; color: #64748b; }
-.mini-segmented button.active { background: #fff; color: #7c4dff; font-weight: 700; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+.mini-segmented button.active { background: #fff; color: #faa643; font-weight: 700; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
 
-.mini-select { width: 100%; height: 80px; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 0.75rem; }
+.mini-select { width: 100%; height: 80px; border: 1px solid #e2e8f0; border-radius: 4px; font-size: 0.75rem; outline: none; }
+.mini-select:focus { border-color: #faa643; }
 
 .sidebar-footer { padding: 12px 16px; border-top: 1px solid #e2e8f0; }
-.btn-apply { width: 100%; background: #7c4dff; color: #fff; border: none; padding: 8px; border-radius: 6px; font-weight: 700; font-size: 0.8rem; cursor: pointer; }
+.btn-apply { width: 100%; background: #faa643; color: #fff; border: none; padding: 8px; border-radius: 6px; font-weight: 700; font-size: 0.8rem; cursor: pointer; transition: background 0.2s; }
+.btn-apply:hover { background: #e89532; }
+
 /* Accordion arrow styles */
 .accordion-arrow {
   display: inline-block;
   width: 10px;
   height: 10px;
   margin-right: 8px;
-  border-right: 2px solid #7c4dff;
-  border-bottom: 2px solid #7c4dff;
+  border-right: 2px solid #faa643;
+  border-bottom: 2px solid #faa643;
   transform: rotate(45deg);
   transition: transform 0.2s;
   position: relative;
@@ -260,7 +264,7 @@ details[open] > summary .accordion-arrow {
     color: #e0e6f7;
   }
   .brand .active-dot {
-    background: #a78bfa;
+    background: #faa643;
   }
   .brand h1 {
     color: #e0e6f7;
@@ -278,9 +282,9 @@ details[open] > summary .accordion-arrow {
     border-color: #23204a;
   }
   .global-search-input:focus {
-    border-color: #a78bfa;
+    border-color: #faa643;
     background: #23263a;
-    box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.12);
+    box-shadow: 0 0 0 3px rgba(250, 166, 67, 0.12);
   }
   .accordion-container {
     background: #181a23;
@@ -308,7 +312,8 @@ details[open] > summary .accordion-arrow {
   }
   .mini-tag {
     background: #23204a;
-    color: #a78bfa;
+    color: #faa643;
+    border-color: #353a50;
   }
   .mini-tag b {
     color: #a3aed6;
@@ -337,7 +342,7 @@ details[open] > summary .accordion-arrow {
   }
   .row.selected {
     background: #23204a;
-    color: #a78bfa;
+    color: #faa643;
   }
   .mini-segmented {
     background: #23204a;
@@ -346,7 +351,7 @@ details[open] > summary .accordion-arrow {
     color: #a3aed6;
   }
   .mini-segmented button.active {
-    background: #a78bfa;
+    background: #faa643;
     color: #23204a;
   }
   .mini-select {
@@ -359,12 +364,12 @@ details[open] > summary .accordion-arrow {
     background: #23204a;
   }
   .btn-apply {
-    background: #a78bfa;
+    background: #faa643;
     color: #23204a;
   }
   .accordion-arrow {
-    border-right: 2px solid #a78bfa;
-    border-bottom: 2px solid #a78bfa;
+    border-right: 2px solid #faa643;
+    border-bottom: 2px solid #faa643;
   }
 }
 </style>

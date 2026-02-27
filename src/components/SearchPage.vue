@@ -1,15 +1,18 @@
-
 <script setup>
-import { ref, watch } from 'vue'
-import DateSelectDropdown from './DateSelectDropdown.vue'
+import { ref, watch, computed } from 'vue'
 import DateRangeDropdown from './DateRangeDropdown.vue'
-import DateManualSelect from './DateManualSelect.vue'
 import StateSelectDropdown from './StateSelectDropdown.vue'
 import OptionTypesRow from './OptionTypesRow.vue'
 import ExportOptionsCard from './ExportOptionsCard.vue'
 import QuickFiltersBar from './QuickFiltersBar.vue'
 import ViewFormatOptions from './ViewFormatOptions.vue'
+
+// --- STATE MANAGEMENT ---
 const search = ref('')
+const focused = ref(false)
+const resultVisible = ref(false)
+const isSidebarOpen = ref(true)
+
 const options = ref({
   restrictTo: false,
   viewFormat: false,
@@ -18,641 +21,277 @@ const options = ref({
   selections: false,
   dates: false,
 })
-function openAdvancedFilters() {
-  // Logic to open advanced filters drawer
-  // You can set a variable here to show the drawer
-}
-watch(() => options.value.restrictTo, (newVal) => {
-  if (newVal) {
-    openAdvancedFilters();
-  }
-});
-const focused = ref(false)
+
+// --- MOCK DATA & SEARCH LOGIC ---
+const allResults = ['Alpha Dynamics', 'Global Connect', 'Horizon Tech', 'Nexus Solutions', 'Pinnacle Group', 'Quantum Labs']
+const filteredResults = computed(() => {
+  if (!search.value) return allResults
+  return allResults.filter(item => item.toLowerCase().includes(search.value.toLowerCase()))
+})
+
 function onSearch() {
-  // Replace with real search logic
-  alert('Searching for: ' + search.value)
+  resultVisible.value = true
 }
 
-
-
-// View Format Section State
-const displayStyle = ref('normal')
-const viewType = ref('Summary')
-const summarySort1 = ref('')
-const summarySort2 = ref('')
-const summarySort3 = ref('')
-const useGrid = ref(false)
-const showChart = ref(false)
-const availableSummaryCols = ref([])
-const selectedSummaryCols = ref([])
-const summaryOptions = [
-  { value: 'State', label: 'State/s' },
-  { value: 'AcctID', label: 'Accounting ID' },
-  { value: 'ActivationDate', label: 'Activation Date' },
-  { value: 'CompanyName', label: 'Company Name' },
-  // ...add more as needed...
-]
-const summaryColumns = [
-  { value: 'AbilitytoPrint_ID', label: 'Ability to Print' },
-  { value: 'ActivationDate_ID', label: 'Activation Date' },
-  { value: 'AcctID', label: 'Accounting ID' },
-  { value: 'CompanyName', label: 'Company Name' },
-  // ...add more as needed...
-]
-const detailSort1 = ref('')
-const detailSort2 = ref('')
-const detailSort3 = ref('')
-const perPage = ref('30')
-const showTotals = ref(false)
-const showIcons = ref(false)
-const defaultToggle = ref(false)
-const putLastAttribOnNextRow = ref(false)
-const putPanelAttribOnNextRow = ref(false)
-const availableDetailCols = ref([])
-const selectedDetailCols = ref([])
-const detailOptions = [
-  { value: 'Client_Id', label: 'Client ID' },
-  { value: 'CompanyName', label: 'Company Name' },
-  { value: 'State', label: 'State' },
-  // ...add more as needed...
-]
-const detailColumns = [
-  { value: 'Client', label: 'Client' },
-  { value: 'ContactMgr', label: 'Contact Mgr' },
-  { value: 'FirstName', label: 'Contact First Name' },
-  { value: 'LastName', label: 'Contact Last Name' },
-  { value: 'Phone', label: 'Phone' },
-  { value: 'City', label: 'City' },
-  { value: 'State', label: 'State' },
-  { value: 'Users', label: 'Users' },
-  // ...add more as needed...
-]
-function getSummaryColLabel(val) {
-  const found = summaryColumns.find(opt => opt.value === val)
-  return found ? found.label : val
+function resetResult() {
+  search.value = ''
+  resultVisible.value = false
+  Object.keys(options.value).forEach(key => options.value[key] = false)
 }
-function getDetailColLabel(val) {
-  const found = detailColumns.find(opt => opt.value === val)
-  return found ? found.label : val
+
+function openAdvancedFilters() {
+  // Logic for advanced drawer if needed
 }
-function moveUp(type) {}
-function moveDown(type) {}
-function addCol(type) {}
-function removeCol(type) {}
+
+function formatLabel(key) {
+  return key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1')
+}
+
+watch(() => options.value.restrictTo, (newVal) => {
+  if (newVal) openAdvancedFilters()
+})
 </script>
 
-
 <template>
-  <div class="modern-bg">
-    <div class="glass search-container">
-      <div class="header-row">
-        <svg class="logo-icon" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="22" fill="#7c4dff" fill-opacity="0.15"/><path d="M24 14a10 10 0 1 1 0 20 10 10 0 0 1 0-20zm0 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16z" fill="#7c4dff"/></svg>
-        <h1 class="title">Client Search</h1>
+  <div class="dashboard-wrapper">
+    <header class="top-nav glass">
+      <div class="nav-left">
+        <svg class="logo-icon" viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="22" fill="#faa643" fill-opacity="0.15"/>
+          <path d="M24 14a10 10 0 1 1 0 20 10 10 0 0 1 0-20zm0 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16z" fill="#faa643"/>
+        </svg>
+        <h1 class="nav-title">Client Search</h1>
       </div>
-      <div class="search-bar-row">
-        <div class="search-bar-outer" :class="{ focused }">
-          <svg class="search-icon" viewBox="0 0 24 24"><path d="M15.5 15.5L20 20" stroke="#7c4dff" stroke-width="2" stroke-linecap="round"/><circle cx="11" cy="11" r="7" stroke="#7c4dff" stroke-width="2"/></svg>
-          <input
-            v-model="search"
-            class="search-input"
-            type="text"
-            placeholder="Search clients..."
-            @focus="focused = true"
-            @blur="focused = false"
-            @keyup.enter="onSearch"
-          />
-          <button class="search-btn" @click="onSearch">
-            <svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 12h14M12 5l7 7-7 7" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
-          </button>
-        </div>
-      </div>
-      <div class="options-row">
-        <div class="option-group">
-          <label v-for="(val, key) in options" :key="key" class="option-label">
-            <input type="checkbox" v-model="options[key]" />
-            <span>{{ key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1') }}</span>
-          </label>
-        </div>
-        <a href="#" class="save-tabs">
-          <svg viewBox="0 0 20 20" width="18" height="18"><path d="M5 4v12h10V4H5zm2 2h6v8H7V6z" fill="#7c4dff"/></svg>
-          <span>Save Tabs</span>
-        </a>
-      </div>
-      <QuickFiltersBar :restrictTo="options.restrictTo" @openAdvancedFilters="openAdvancedFilters" />
-      <DateRangeDropdown v-if="options.dates" />
-      <StateSelectDropdown v-if="options.selections" />
-      <OptionTypesRow v-if="options.option" />
-      <ExportOptionsCard v-if="options.export" />
-      <!-- View Format Section: open when checked -->
-      <ViewFormatOptions v-if="options.viewFormat" />
 
-      <div class="result-btn-row">
-        <button class="result-btn show-btn" @click="showResult">Show Result</button>
-        <button class="result-btn reset-btn" @click="resetResult">Reset</button>
+
+
+      <div class="nav-right">
+        <button class="icon-btn save-tabs" title="Save Tabs">
+          <svg viewBox="0 0 20 20" width="18" height="18"><path d="M5 4v12h10V4H5zm2 2h6v8H7V6z" fill="currentColor"/></svg>
+          <span>Save View</span>
+        </button>
+        <button class="sidebar-toggle" @click="isSidebarOpen = !isSidebarOpen">
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+        </button>
       </div>
-      <div v-if="resultVisible" class="result-section" style="margin-top: 1.5rem;">
-        <div v-if="filteredResults.length === 0" class="no-result">No results found.</div>
-        <ul v-else class="result-list">
-          <li v-for="item in filteredResults" :key="item" class="result-item">{{ item }}</li>
-        </ul>
-      </div>
+    </header>
+
+    <div class="main-layout">
+      <main class="results-area">
+        <div v-if="!resultVisible && !Object.values(options).some(v => v)" class="placeholder-state">
+          <div class="pulse-icon">🔍</div>
+          <h2>Find your clients</h2>
+          <p>Adjust filters on the right and click <strong>Update Results</strong>.</p>
+        </div>
+
+            <QuickFiltersBar :restrictTo="options.restrictTo" @openAdvancedFilters="openAdvancedFilters" />
+            <DateRangeDropdown v-if="options.dates" />
+            <StateSelectDropdown v-if="options.selections" />
+            <OptionTypesRow v-if="options.option" />
+            <ExportOptionsCard v-if="options.export" />
+            <ViewFormatOptions v-if="options.viewFormat" />
+  
+      </main>
+
+      <aside class="sidebar-right glass" :class="{ 'is-collapsed': !isSidebarOpen }">
+        <div class="sidebar-header">
+          <!-- <span class="header-label">Filters & Settings</span> -->
+          <button class="reset-btn" @click="resetResult">Reset</button>
+        </div>
+
+        <div class="sidebar-scroll">
+          <div class="filter-box">
+            <h4 class="filter-title">Toggle Modules</h4>
+            <div class="checkbox-grid">
+              <label v-for="(val, key) in options" :key="key" class="custom-check">
+                <input type="checkbox" v-model="options[key]" />
+                <span class="box"></span>
+                <span class="text">{{ formatLabel(key) }}</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="dynamic-group">
+       
+          </div>
+        </div>
+
+        <div class="sidebar-footer">
+          <button class="update-btn" @click="onSearch">Update Results</button>
+        </div>
+      </aside>
     </div>
   </div>
 </template>
 
-
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;500;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
-
-/* Result Button Row Styles */
-          .result-btn-row {
-            margin-top: 2rem;
-            display: flex;
-            gap: 1.2rem;
-            justify-content: flex-start;
-            align-items: center;
-          }
-          .result-btn {
-            padding: 0.55rem 1.6rem;
-            font-size: 1.08rem;
-            font-weight: 600;
-            border-radius: 8px;
-            border: 1.5px solid #ececec;
-            background: #f7f8fa;
-            color: #646cff;
-            cursor: pointer;
-            transition: background 0.18s, color 0.18s, border 0.18s;
-            box-shadow: 0 1px 6px #e0e0e0;
-          }
-          .result-btn.show-btn {
-            background: #646cff;
-            color: #fff;
-            border-color: #646cff;
-          }
-          .result-btn.show-btn:hover {
-            background: #5157d8;
-            color: #fff;
-            border-color: #5157d8;
-          }
-          .result-btn.reset-btn {
-            background: #fff;
-            color: #ef4444;
-            border-color: #ef4444;
-          }
-          .result-btn.reset-btn:hover {
-            background: #fef2f2;
-            color: #b91c1c;
-            border-color: #b91c1c;
-          }
-
-
-.modern-bg {
-  background: #f5f6fa;
+.dashboard-wrapper {
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
-  font-family: 'Montserrat', Arial, sans-serif;
-  overflow-x: hidden;
-  width: 100%;
-  min-height: 100vh;
-  padding: 0;
-  box-sizing: border-box;
+  background: #f9fafb;
+  font-family: 'Montserrat', sans-serif;
+  color: #1f2937;
+  overflow: hidden;
 }
 
-
-
-html, body {
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  overflow-x: hidden;
-  box-sizing: border-box;
-}
-
+/* Glassmorphism utility */
 .glass {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-left: 1px solid #e5e7eb;
+}
+
+/* --- TOP NAVIGATION --- */
+.top-nav {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  border-bottom: 1px solid #e5e7eb;
+  z-index: 10;
+}
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+.nav-title { font-size: 1.1rem; font-weight: 700; color: #23235b; margin: 0; }
+
+.nav-search-box {
+  display: flex;
+  align-items: center;
+  background: #f3f4f6;
+  border-radius: 50px;
+  padding: 6px 16px;
+  width: 320px;
+  transition: all 0.3s ease;
+  border: 1.5px solid transparent;
+}
+.nav-search-box.focused {
   background: #fff;
-  box-shadow: 0 2px 16px 0 rgba(60, 72, 88, 0.08);
-  border: 1px solid #ececec;
-  padding: 1.5rem 2rem 1rem 2rem;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  animation: fadeIn 0.8s cubic-bezier(.4,0,.2,1);
+  width: 420px;
+  border-color: #faa643;
+  box-shadow: 0 0 0 4px rgba(250, 166, 67, 0.1);
 }
-
-.glass.search-container {
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-}
-@media (max-width: 900px) {
-  .glass {
-    max-width: 98vw;
-    padding: 1rem 0.5rem 0.5rem 0.5rem;
-  }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: none; }
-}
-
-.header-row {
-  display: flex;
-  align-items: center;
-  gap: 1.1rem;
-  margin-bottom: 2rem;
-}
-.logo-icon {
-  width: 44px;
-  height: 44px;
+.nav-search-box input {
   background: none;
-  border-radius: 50%;
-  box-shadow: 0 2px 8px #e0e0e0;
-}
-.title {
-  color: #23235b;
-  font-size: 1.7rem;
-  font-weight: 700;
-  letter-spacing: 0.2px;
-  margin: 0;
-}
-
-.search-bar-row {
-  margin-bottom: 1.2rem;
-}
-.search-bar-outer {
-  display: flex;
-  align-items: center;
-  background: #f7f8fa;
-  border-radius: 10px;
-  box-shadow: 0 1px 6px #e0e0e0;
-  border: 1.2px solid #e0e0e0;
-  padding: 0.15rem 0.6rem 0.15rem 0.6rem;
-  transition: box-shadow 0.2s, border 0.2s;
-  position: relative;
-}
-.search-bar-outer.focused {
-  box-shadow: 0 2px 12px #646cff22;
-  border-color: #646cff;
-}
-.search-icon {
-  width: 24px;
-  height: 24px;
-  margin-right: 0.5rem;
-  opacity: 0.6;
-}
-.search-input {
-  flex: 1;
-  background: transparent;
   border: none;
   outline: none;
-  font-size: 1.08rem;
-  color: #23235b;
-  padding: 0.6rem 0.2rem;
+  padding-left: 10px;
+  width: 100%;
   font-family: inherit;
-  font-weight: 500;
-  letter-spacing: 0.1px;
-  transition: color 0.2s;
-}
-.search-input::placeholder {
-  color: #b0b3c6;
-  font-weight: 400;
-}
-.search-btn {
-  background: #646cff;
-  color: #fff;
-  border: none;
-  border-radius: 7px;
-  padding: 0.45rem 1rem;
-  margin-left: 0.7rem;
-  font-size: 1.05rem;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  transition: background 0.2s, box-shadow 0.2s;
-  box-shadow: 0 1px 6px #e0e0e0;
-}
-.search-btn:hover {
-  background: #5157d8;
-  box-shadow: 0 2px 10px #646cff22;
+  font-size: 0.9rem;
 }
 
-.options-row {
-  display: flex;
-  align-items: center;
-  gap: 1.2rem;
-  flex-wrap: wrap;
-  margin-top: 0.5rem;
-  justify-content: flex-start;
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  box-sizing: border-box;
-  overflow-x: hidden;
+.nav-right { display: flex; align-items: center; gap: 12px; }
+.save-tabs { 
+  display: flex; align-items: center; gap: 6px;
+  background: #fff8ef; color: #faa643;
+  border: none; padding: 8px 14px; border-radius: 8px;
+  font-weight: 600; font-size: 0.85rem; cursor: pointer;
 }
-.option-group {
-  display: flex;
-  gap: 0.8rem;
-  flex-wrap: wrap;
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  box-sizing: border-box;
-}
-.option-group input{
-  width: unset;
-  margin: 0;
-}
-.option-label {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  font-size: 0.98rem;
-  color: #23235b;
-  cursor: pointer;
-  user-select: none;
-  background: #f7f8fa;
-  border-radius: 5px;
-  padding: 0.18rem 0.6rem 0.18rem 0.35rem;
-  transition: background 0.15s;
-  min-width: 0;
-  max-width: 100%;
-  box-sizing: border-box;
-}
-@media (max-width: 700px) {
-  .options-row {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.7rem;
-  }
-  .option-group {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  .option-label {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-  }
-}
-.option-label input[type="checkbox"] {
-  accent-color: #646cff;
-}
-.option-label .bold {
-  font-weight: 700;
-}
-.save-tabs {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  color: #646cff;
-  font-size: 0.99rem;
-  text-decoration: none;
-  font-weight: 600;
-  background: #f7f8fa;
-  border-radius: 6px;
-  padding: 0.25rem 0.8rem;
-  transition: background 0.15s, color 0.15s;
-  margin-left: 1.2rem;
-}
-.save-tabs:active {
-  background: #646cff;
-  color: #fff;
+.sidebar-toggle {
+  background: none; border: 1px solid #e5e7eb;
+  padding: 6px; border-radius: 8px; cursor: pointer;
 }
 
-.date-inputs-card {
-  background: #fff;
-  border-radius: 14px;
-  box-shadow: 0 2px 16px 0 rgba(60, 72, 88, 0.08);
-  border: 1px solid #ececec;
-  margin: 2rem 0 1.5rem 0;
-  padding: 2rem 1.5rem;
+/* --- LAYOUT --- */
+.main-layout { display: flex; flex: 1; overflow: hidden; }
+
+/* --- SIDEBAR (RIGHT) --- */
+.sidebar-right {
+  max-width: 240px;
   width: 100%;
-  max-width: 100vw;
-  box-sizing: border-box;
-}
-.date-inputs-row {
-  display: flex;
-  flex-direction: row;
-  gap: 2rem;
-  justify-content: flex-start;
-  align-items: flex-end;
-}
-.date-label {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  flex: 1;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.date-heading {
-  font-size: 1.18rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: #7c4dff;
-  letter-spacing: 0.01em;
+.sidebar-right.is-collapsed {
+  width: 0;
+  overflow: hidden;
+  border-left: none;
 }
 
-.view-format-section {
-  background: #fff;
-  border-radius: 14px;
-  box-shadow: 0 2px 16px 0 rgba(60, 72, 88, 0.08);
-  border: 1px solid #ececec;
-  margin: 2rem 0 1.5rem 0;
-  padding: 2rem 1.5rem;
-  width: 100%;
-  max-width: 100vw;
-  box-sizing: border-box;
-  color: #23235b;
-  overflow-x: auto;
-}
-
-.view-format-heading {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #7c4dff;
-  margin-bottom: 1.5rem;
-  letter-spacing: 0.01em;
-}
-.display-style-row, .view-type-row, .sort-row, .per-page-row, .checkbox-row {
+.sidebar-header {
+  padding: 20px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 1.2rem;
-  margin-bottom: 1.2rem;
+  border-bottom: 1px solid #f3f4f6;
 }
-.columns-row {
+.header-label { font-size: 0.75rem; font-weight: 700; color: #9ca3af; text-transform: uppercase; }
+.reset-btn { background: none;padding: 0; border: none; color: #ef4444; font-weight: 600; cursor: pointer; }
+
+.sidebar-scroll { flex: 1; overflow-y: auto; padding: 20px; }
+.filter-title { font-size: 0.85rem; font-weight: 700; margin-bottom: 12px; color: #374151; }
+
+.checkbox-grid { display: grid; gap: 10px; }
+.custom-check { display: flex; align-items: center; cursor: pointer; font-size: 0.85rem; font-weight: 500; }
+.custom-check input { display: none; }
+.box { width: 18px; height: 18px; border: 2px solid #d1d5db; border-radius: 5px; margin-right: 10px; transition: 0.2s; }
+.custom-check input:checked + .box { background: #faa643; border-color: #faa643; position: relative; }
+.custom-check input:checked + .box::after {
+  content: ''; position: absolute; left: 5px; top: 1px; width: 4px; height: 8px;
+  border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg);
+}
+
+.sidebar-footer { padding: 20px; border-top: 1px solid #f3f4f6; }
+.update-btn {
+  width: 100%; background: #faa643; color: #fff;
+  border: none; padding: 14px; border-radius: 12px;
+  font-weight: 700; cursor: pointer; transition: 0.2s;
+  box-shadow: 0 4px 12px rgba(250, 166, 67, 0.2);
+}
+.update-btn:hover { transform: translateY(-1px); background: #d18c00; }
+
+/* --- RESULTS AREA --- */
+.results-area { flex: 1; padding: 32px; overflow-y: auto; background: #fff; }
+.placeholder-state { text-align: center; margin-top: 15vh; color: #9ca3af; }
+.pulse-icon { font-size: 3rem; margin-bottom: 1rem; }
+
+.results-meta { margin-bottom: 24px; color: #6b7280; font-size: 0.9rem; }
+.results-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1.2rem;
-  margin-top: 1.2rem;
-  min-width: 0;
-  width: 100%;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+.client-card {
+  padding: 24px; border-radius: 16px; border: 1px solid #f3f4f6;
+  background: #fff; transition: 0.3s;
+}
+.client-card:hover { border-color: #faa643; box-shadow: 0 10px 25px rgba(0,0,0,0.03); }
+
+.card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
+.avatar { 
+  width: 44px; height: 44px; background: #fff4e5; color: #faa643;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 12px; font-weight: 700; font-size: 1.2rem;
+}
+.badge { font-size: 0.65rem; background: #ecfdf5; color: #10b981; padding: 4px 10px; border-radius: 20px; font-weight: 700; }
+.account-type { font-size: 0.8rem; color: #9ca3af; margin: 4px 0 20px 0; }
+
+.view-btn {
+  width: 100%; background: #f9fafb; border: 1px solid #e5e7eb;
+  padding: 8px; border-radius: 8px; font-weight: 600; cursor: pointer;
 }
 
-.columns-select {
-  width: 100%;
-  min-width: 0;
-  min-height: 120px;
-  border-radius: 6px;
-  border: 1px solid #ececec;
-  padding: 6px;
-  background: #f7f8fa;
-  color: #23235b;
-  font-family: inherit;
-  font-size: 1rem;
-}
-.column-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  justify-content: center;
-}
-.column-buttons button {
-  padding: 4px 10px;
-  border-radius: 6px;
-  border: 1px solid #ececec;
-  background: #f7f8fa;
-  color: #646cff;
-  font-weight: 600;
-  font-family: inherit;
-  font-size: 0.98rem;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-}
-.column-buttons button:hover {
-  background: #646cff;
-  color: #fff;
-}
+/* --- DARK MODE --- */
 @media (prefers-color-scheme: dark) {
-  .modern-bg {
-    background: #181a23;
-    color: #e0e6f7;
-  }
-  .glass {
-    background: #23263a;
-    box-shadow: 0 2px 16px 0 rgba(30, 40, 60, 0.18);
-    border: 1px solid #23204a;
-    color: #e0e6f7;
-  }
-  .header-row {
-    color: #e0e6f7;
-  }
-  .logo-icon {
-    box-shadow: 0 2px 8px #23204a;
-  }
-  .title {
-    color: #a3aed6;
-  }
-  .search-bar-outer {
-    background: #23263a;
-    box-shadow: 0 1px 6px #23204a;
-    border: 1.2px solid #fff;
-  }
-  .search-bar-outer.focused {
-    box-shadow: 0 2px 12px #a78bfa44;
-    border-color: #a78bfa;
-  }
-  .search-input {
-    color: #e0e6f7;
-  }
-  .search-input::placeholder {
-    color: #7c7fa6;
-  }
-  .search-btn {
-    background: #a78bfa;
-    color: #23204a;
-    box-shadow: 0 1px 6px #23204a;
-  }
-  .search-btn:hover {
-    background: #7c4dff;
-    color: #fff;
-    box-shadow: 0 2px 10px #a78bfa44;
-  }
-  .options-row {
-    color: #e0e6f7;
-  }
-  .option-label {
-    background: #23263a;
-    color: #a3aed6;
-  }
-  .option-label input[type="checkbox"] {
-    accent-color: #a78bfa;
-  }
-  .option-label .bold {
-    color: #fff;
-  }
-  .save-tabs {
-    background: #23263a;
-    color: #a78bfa;
-  }
-  .save-tabs:active {
-    background: #a78bfa;
-    color: #23204a;
-  }
-  .date-inputs-card {
-    background: #23263a;
-    border: 1px solid #23204a;
-    color: #e0e6f7;
-  }
-  .date-heading {
-    color: #a78bfa;
-  }
-  .view-format-section {
-    background: #23263a;
-    border: 1px solid #23204a;
-    color: #e0e6f7;
-  }
-  .view-format-heading {
-    color: #a78bfa;
-  }
-  .columns-select {
-    background: #181a23;
-    color: #e0e6f7;
-    border: 1px solid #23204a;
-  }
-  .column-buttons button {
-    background: #23263a;
-    color: #a78bfa;
-    border: 1px solid #23204a;
-  }
-  .column-buttons button:hover {
-    background: #a78bfa;
-    color: #23204a;
-  }
-  .result-btn-row {
-    /* no change needed */
-  }
-  .result-btn {
-    background: #23263a;
-    color: #a3aed6;
-    border: 1.5px solid #23204a;
-    box-shadow: 0 1px 6px #23204a;
-  }
-  .result-btn.show-btn {
-    background: #a78bfa;
-    color: #23204a;
-    border-color: #a78bfa;
-  }
-  .result-btn.show-btn:hover {
-    background: #7c4dff;
-    color: #fff;
-    border-color: #7c4dff;
-  }
-  .result-btn.reset-btn {
-    background: #23263a;
-    color: #ef4444;
-    border-color: #ef4444;
-  }
-  .result-btn.reset-btn:hover {
-    background: #3b1a1a;
-    color: #fff;
-    border-color: #b91c1c;
-  }
+  .dashboard-wrapper { background: #111827; color: #f9fafb; }
+  .top-nav { background: #1f2937; border-color: #374151; }
+  .nav-title { color: #fff; }
+  .nav-search-box { background: #374151; }
+  .nav-search-box input { color: #fff; }
+  .sidebar-right { background: #1f2937; border-color: #374151; }
+  .results-area { background: #111827; }
+  .client-card { background: #1f2937; border-color: #374151; }
+  .header-label, .account-type { color: #9ca3af; }
+  .box { border-color: #4b5563; }
 }
 </style>
-
-

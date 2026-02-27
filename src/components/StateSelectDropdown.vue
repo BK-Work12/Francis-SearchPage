@@ -1,4 +1,5 @@
 <template>
+  <div class="state-select-heading">State Select</div>
   <div class="filter-pill" :class="{ 'is-active': selectedStates.length > 0 }" v-click-outside="close">
     <span class="pill-label">States</span>
     
@@ -165,8 +166,8 @@ defineExpose({ vClickOutside });
   position: relative;
   display: inline-flex;
   align-items: center;
-  background: #fff;
-  border: 1.5px solid #e2e8f0;
+  background: #fff8ef;
+  border: 1.5px solid #faa643;
   border-radius: 8px;
   padding: 6px 12px;
   cursor: pointer;
@@ -174,8 +175,8 @@ defineExpose({ vClickOutside });
   margin-top: 20px;}
 
 .filter-pill.is-active {
-  border-color: #7c4dff;
-  background: #f5f3ff;
+  border-color: #faa643;
+  background: #fff8ef;
 }
 
 .pill-label {
@@ -185,10 +186,10 @@ defineExpose({ vClickOutside });
   text-transform: uppercase;
   margin-right: 10px;
   padding-right: 10px;
-  border-right: 1px solid #e2e8f0;
+  border-right: 1px solid #faa643;
 }
 
-.is-active .pill-label { color: #7c4dff; border-right-color: #c4b5fd; }
+ .is-active .pill-label { color: #faa643; border-right-color: #faa643; }
 
 .pill-trigger {
   display: flex;
@@ -207,8 +208,8 @@ defineExpose({ vClickOutside });
 }
 
 .pill-count {
-  background: #7c4dff;
-  color: white;
+  background: #faa643;
+  color: #fff;
   padding: 1px 6px;
   border-radius: 10px;
   font-size: 10px;
@@ -222,8 +223,8 @@ defineExpose({ vClickOutside });
   overflow: auto;
   left: 0;
   width: 450px; /* Wider to allow grid layout */
-  background: white;
-  border: 1px solid #7c4dff;
+  background: #fff8ef;
+  border: 1.5px solid #faa643;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   z-index: 2000;
@@ -232,7 +233,7 @@ defineExpose({ vClickOutside });
 
 .dropdown-header {
   padding-bottom: 8px;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1.5px solid #faa643;
   margin-bottom: 10px;
   display: flex;
   justify-content: flex-end;
@@ -241,7 +242,7 @@ defineExpose({ vClickOutside });
 .text-btn {
   background: none;
   border: none;
-  color: #7c4dff;
+  color: #faa643;
   font-size: 11px;
   font-weight: 700;
   cursor: pointer;
@@ -277,10 +278,10 @@ defineExpose({ vClickOutside });
 }
 
 .option-item.selected {
-  background: #ede9fe;
+  background: #faa643;
 }
 
-.option-item:hover { background: #f5f3ff; }
+.option-item:hover { background: #faa643; }
 .chip-list {
   display: flex;
   flex-wrap: wrap;
@@ -288,8 +289,8 @@ defineExpose({ vClickOutside });
   margin-bottom: 6px;
 }
 .chip {
-  background: #ede9fe;
-  color: #5b21b6;
+  color: #fff8ef;
+  background: #faa643;
   border-radius: 12px;
   padding: 2px 10px 2px 8px;
   font-size: 12px;
@@ -298,12 +299,14 @@ defineExpose({ vClickOutside });
 }
 .chip-remove {
   margin-left: 4px;
-  color: #a21caf;
+  color: rgb(167, 34, 34);
   font-weight: bold;
   cursor: pointer;
   font-size: 13px;
 }
-.chip-remove:hover { color: #be185d; }
+.chip-remove:hover {
+  color: #d18c00;
+}
 
 .adv-actions {
   display: flex;
@@ -405,43 +408,48 @@ input[type="checkbox"] { accent-color: #7c4dff; }
     border-bottom-color: #353a50;
   }
   .chip {
-    background: #2d2e4a;
-    color: #a78bfa;
+    background: #e9d6ba;
+    color: #23204a;
+    border: 1px solid #faa643;
   }
   .chip-remove {
-    color: #f472b6;
+    color: #faa643;
   }
   .chip-remove:hover {
-    color: #f43f5e;
+    color: #d18c00;
   }
   .group-title {
-    color: #a3aed6;
+    color: #faa643;
+    font-weight: 700;
+    letter-spacing: 0.5px;
   }
   .option-item {
     background: transparent;
     color: #e0e6f5;
   }
   .option-item.selected {
-    background: #23204a;
-    color: #a78bfa;
+    background: #faa643;
+    color: #fff;
+    border-radius: 6px;
   }
   .option-item:hover {
-    background: #2d2e4a;
-    color: #a78bfa;
+    background: #fff8ef;
+    color: #faa643;
+    border-radius: 6px;
   }
   .option-name {
     color: #e0e6f5;
   }
   .no-results {
-    color: #f472b6;
+    color: #faa643;
   }
   .text-btn {
-    color: #a78bfa;
+    color: #faa643;
   }
   .inner-search.adv-search {
     background: #23263a;
     color: #e0e6f5;
-    border-bottom-color: #353a50;
+    border-bottom: 1.5px solid #faa643;
   }
 }
 
@@ -453,4 +461,15 @@ input[type="checkbox"] { accent-color: #7c4dff; }
   font-size: 13px;
 }
 .remove-btn:hover { color: #b91c1c; }
+</style>
+<style scoped>
+.state-select-heading {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #147393;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  letter-spacing: 0.01em;
+  font-family: 'Inter', -apple-system, sans-serif;
+}
 </style>

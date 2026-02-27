@@ -1,4 +1,5 @@
 <template>
+  <div class="date-range-heading">Date Range</div>
   <div class="filter-container">
     <div class="filter-bar">
       <div class="filter-pill" :class="{ 'is-active': dateType !== '-' }">
@@ -170,6 +171,7 @@ onBeforeUnmount(() => document.removeEventListener('mousedown', closePopups));
 .filter-container {
   padding: 20px;
   background: #f8f9fc;
+  margin-top: 20px;
 }
 
 .filter-bar {
@@ -190,10 +192,10 @@ onBeforeUnmount(() => document.removeEventListener('mousedown', closePopups));
   transition: 0.2s;
 }
 
-.filter-pill:hover { border-color: #7c4dff; }
+.filter-pill:hover { border-color: #faa643; }
 .filter-pill.is-active {
-  border-color: #7c4dff;
-  background: #f5f3ff;
+  border-color: #faa643;
+  background: #fff8ef;
 }
 
 .pill-label {
@@ -206,7 +208,7 @@ onBeforeUnmount(() => document.removeEventListener('mousedown', closePopups));
   padding-right: 8px;
 }
 
-.is-active .pill-label { color: #7c4dff; border-right-color: #c4b5fd; }
+    .is-active .pill-label { color: #faa643; border-right-color: #faa643; }
 
 .pill-select, .calendar-pill input {
   border: none;
@@ -231,8 +233,8 @@ onBeforeUnmount(() => document.removeEventListener('mousedown', closePopups));
   top: calc(100% + 8px);
   left: 0;
   z-index: 100;
-  background: white;
-  border: 1px solid #7c4dff;
+  background: #fff8ef;
+  border: 1px solid #faa643;
   border-radius: 12px;
   padding: 12px;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
@@ -243,7 +245,7 @@ onBeforeUnmount(() => document.removeEventListener('mousedown', closePopups));
   justify-content: space-between;
   margin-bottom: 10px;
   font-weight: bold;
-  color: #7c4dff;
+  color: #faa643;
 }
 
 .calendar-table td {
@@ -254,8 +256,8 @@ onBeforeUnmount(() => document.removeEventListener('mousedown', closePopups));
   font-size: 12px;
 }
 
-.calendar-table td:hover:not(.empty) { background: #f5f3ff; color: #7c4dff; }
-.calendar-table td.selected { background: #7c4dff; color: white; }
+.calendar-table td:hover:not(.empty) { background: #fff8ef; color: #faa643; }
+.calendar-table td.selected { background: #faa643; color: white; }
 
 @media (max-width: 768px) {
   .manual-group { border-left: none; padding-left: 0; width: 100%; }
@@ -283,7 +285,7 @@ onBeforeUnmount(() => document.removeEventListener('mousedown', closePopups));
     border-right-color: #353a50;
   }
   .is-active .pill-label {
-    color: #a78bfa;
+    color: #faa643;
     border-right-color: #a78bfa;
   }
   .pill-select, .calendar-pill input {
@@ -312,8 +314,19 @@ onBeforeUnmount(() => document.removeEventListener('mousedown', closePopups));
     color: #a78bfa;
   }
   .calendar-table td.selected {
-    background: #a78bfa;
+    background: #faa643;
     color: #23263a;
   }
+}
+</style>
+<style scoped>
+.date-range-heading {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #147393;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  letter-spacing: 0.01em;
+  font-family: 'Inter', -apple-system, sans-serif;
 }
 </style>

@@ -1,5 +1,7 @@
 <template>
+ 
   <div v-if="restrictTo" class="mini-filter-system">
+     <div class="quick-filters-heading">Quick Filters</div>
     <div class="layout">
       <div class="first">
         <header class="mini-header">
@@ -226,11 +228,11 @@ const onSearch = () => console.log("Final Filter Payload:", JSON.parse(JSON.stri
 </script>
 
 <style scoped>
-/* PRESERVED ORIGINAL STYLES */
+/* AMBER/ORANGE THEME STYLES */
 .mini-filter-system { font-family: 'Inter', sans-serif; }
-.first,.legacy-wrapper,.third { width: 100%; max-width: 400px; }
+.first, .legacy-wrapper, .third { width: 100%; max-width: 380px; }
 .layout { width: 100%; margin-top: 20px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
-.mini-header { padding: 12px 16px; background: #7c4dff; color: white; display: flex; justify-content: space-between; align-items: center; }
+.mini-header { padding: 12px 16px; background: #faa643; color: white; display: flex; justify-content: space-between; align-items: center; }
 .list-row input { width: unset; }
 .brand { display: flex; align-items: center; gap: 8px; }
 .dot-indicator { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; }
@@ -238,7 +240,7 @@ const onSearch = () => console.log("Final Filter Payload:", JSON.parse(JSON.stri
 .count-badge { font-size: 0.7rem; background: rgba(0,0,0,0.2); padding: 2px 6px; border-radius: 4px; }
 .header-actions { display: flex; gap: 8px; }
 .text-btn { background: none; border: none; color: white; opacity: 0.8; font-size: 0.75rem; cursor: pointer; }
-.apply-btn { background: white; color: #7c4dff; border: none; padding: 4px 10px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; cursor: pointer; }
+.apply-btn { background: white; color: #faa643; border: none; padding: 4px 10px; border-radius: 4px; font-weight: 700; font-size: 0.75rem; cursor: pointer; }
 .accordion-container { max-height: 80vh; overflow-y: auto; }
 .filter-section { border-bottom: 1px solid #f1f5f9; }
 .filter-section summary { padding: 12px 16px; font-size: 0.75rem; font-weight: 700; color: #64748b; cursor: pointer; background: #f8fafc; list-style: none; }
@@ -248,8 +250,8 @@ const onSearch = () => console.log("Final Filter Payload:", JSON.parse(JSON.stri
 .field-row { margin-bottom: 12px; }
 .field-row label { display: block; font-size: 0.7rem; font-weight: 600; color: #94a3b8; margin-bottom: 4px; }
 .tag-wrap { border: 1px solid #e2e8f0; border-radius: 6px; padding: 4px; display: flex; flex-wrap: wrap; gap: 4px; }
-.mini-tag { background: #f3f0ff; color: #7c4dff; font-size: 0.65rem; padding: 1px 6px; border-radius: 3px; display: flex; align-items: center; }
-.mini-tag i { margin-left: 4px; cursor: pointer; font-style: normal; }
+.mini-tag { background: #fff8ef; color: #faa643; font-size: 0.65rem; padding: 1px 6px; border-radius: 3px; display: flex; align-items: center; border: 1px solid #ffedd5; }
+.mini-tag i { margin-left: 4px; cursor: pointer; font-style: normal; font-weight: bold; }
 .tag-wrap input { border: none; outline: none; font-size: 0.7rem; flex: 1; min-width: 40px; }
 .compact-multi { width: 100%; height: 80px; font-size: 0.75rem; border: 1px solid #e2e8f0; border-radius: 6px; }
 .compact-multi-small { width: 100%; height: 50px; font-size: 0.75rem; border: 1px solid #e2e8f0; border-radius: 6px; }
@@ -257,17 +259,17 @@ const onSearch = () => console.log("Final Filter Payload:", JSON.parse(JSON.stri
 .tiny-label { font-size: 0.65rem; display: block; margin-bottom: 4px; color: #475569; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .micro-tri-state { display: flex; background: #f1f5f9; border-radius: 4px; padding: 2px; }
 .micro-tri-state button { flex: 1; border: none; background: transparent; font-size: 0.6rem; padding: 2px 0; cursor: pointer; border-radius: 3px; color: #94a3b8; }
-.micro-tri-state button.active { background: white; color: #7c4dff; font-weight: 700; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+.micro-tri-state button.active { background: white; color: #faa643; font-weight: 700; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
 .list-container { border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; }
 .inner-search { width: 100%; border: none; border-bottom: 1px solid #e2e8f0; padding: 6px; font-size: 0.7rem; background: #f8fafc; }
 .micro-scroll { height: 100px; overflow-y: auto; }
 .list-row { padding: 4px 8px; font-size: 0.7rem; display: flex; align-items: center; gap: 6px; cursor: pointer; }
-.list-row:hover { background: #f3f0ff; }
+.list-row:hover { background: #fff8ef; }
 .mini-area { width: 100%; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.75rem; padding: 6px; }
 .inline-checks { display: flex; gap: 10px; font-size: 0.7rem; }
-.legacy-wrapper { padding: 10px;}
+.legacy-wrapper { padding: 10px; }
 
-/* NEW SEARCH BAR STYLES */
+/* SEARCH BAR STYLES */
 .main-search-container {
   padding: 10px 16px;
   background: #fff;
@@ -284,16 +286,17 @@ const onSearch = () => console.log("Final Filter Payload:", JSON.parse(JSON.stri
   transition: border-color 0.2s;
 }
 .global-search-input:focus {
-  border-color: #7c4dff;
+  border-color: #faa643;
 }
+
 /* Accordion arrow styles */
 .accordion-arrow {
   display: inline-block;
   width: 10px;
   height: 10px;
   margin-right: 8px;
-  border-right: 2px solid #7c4dff;
-  border-bottom: 2px solid #7c4dff;
+  border-right: 2px solid #faa643;
+  border-bottom: 2px solid #faa643;
   transform: rotate(45deg);
   transition: transform 0.2s;
   position: relative;
@@ -302,6 +305,7 @@ const onSearch = () => console.log("Final Filter Payload:", JSON.parse(JSON.stri
 details[open] > summary .accordion-arrow {
   transform: rotate(-135deg);
 }
+
 @media (prefers-color-scheme: dark) {
   .mini-filter-system {
     background: #181a23;
@@ -322,7 +326,7 @@ details[open] > summary .accordion-arrow {
     color: #e0e6f7;
   }
   .header-actions .apply-btn {
-    background: #a78bfa;
+    background: #faa643;
     color: #23204a;
   }
   .main-search-container {
@@ -335,7 +339,7 @@ details[open] > summary .accordion-arrow {
     border-color: #23204a;
   }
   .global-search-input:focus {
-    border-color: #a78bfa;
+    border-color: #faa643;
   }
   .accordion-container {
     background: #181a23;
@@ -358,7 +362,8 @@ details[open] > summary .accordion-arrow {
   }
   .mini-tag {
     background: #23204a;
-    color: #a78bfa;
+    color: #faa643;
+    border-color: #353a50;
   }
   .mini-tag i {
     color: #a3aed6;
@@ -390,7 +395,7 @@ details[open] > summary .accordion-arrow {
     color: #a3aed6;
   }
   .micro-tri-state button.active {
-    background: #a78bfa;
+    background: #faa643;
     color: #23204a;
   }
   .list-container {
@@ -423,10 +428,20 @@ details[open] > summary .accordion-arrow {
     background: #181a23;
   }
   .accordion-arrow {
-    border-right: 2px solid #a78bfa;
-    border-bottom: 2px solid #a78bfa;
+    border-right: 2px solid #faa643;
+    border-bottom: 2px solid #faa643;
   }
 }
 </style>
-
+<style scoped>
+.quick-filters-heading {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #147393;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  letter-spacing: 0.01em;
+  font-family: 'Inter', -apple-system, sans-serif;
+}
+</style>
 

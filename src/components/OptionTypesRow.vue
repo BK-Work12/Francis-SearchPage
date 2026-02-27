@@ -1,4 +1,5 @@
 <template>
+  <div class="option-types-heading">Option Types</div>
   <div class="filter-row">
     
     <div class="filter-pill" :class="{ 'is-active': countActive('left') > 0 }" v-click-outside="() => close('types')">
@@ -147,8 +148,8 @@ const vClickOutside = {
   box-shadow: 0 1px 4px rgba(124,77,255,0.04);
 }
 
-.filter-pill:hover { border-color: #7c4dff; }
-.filter-pill.is-active { border-color: #7c4dff; background: #f5f3ff; }
+.filter-pill:hover { border-color: #faa643; }
+.filter-pill.is-active { border-color: #faa643; background: #fff8ef; }
 
 .pill-label {
   font-size: 11px;
@@ -160,7 +161,7 @@ const vClickOutside = {
   border-bottom: 1px solid #e2e8f0;
 }
 
-.is-active .pill-label { color: #7c4dff; border-bottom-color: #c4b5fd; }
+.is-active .pill-label { color: #faa643; border-bottom-color: #faa643; }
 
 .pill-trigger {
   display: flex;
@@ -175,7 +176,7 @@ const vClickOutside = {
 }
 
 .pill-count {
-  background: #7c4dff;
+  background: #faa643;
   color: #fff;
   font-size: 11px;
   padding: 2px 7px;
@@ -195,15 +196,17 @@ const vClickOutside = {
   left: 0;
   min-width: 200px;
   background: white;
-  border: 1px solid #7c4dff;
+  border: 1px solid #faa643;
   border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(124,77,255,0.08);
+  box-shadow: 0 8px 20px rgba(250,166,67,0.08);
   z-index: 100;
   padding: 12px;
   display: flex;
   flex-direction: column;
 }
-
+.pill-trigger.simple-label input{
+  width: unset;
+}
 .drop-item {
   display: flex;
   align-items: center;
@@ -220,26 +223,30 @@ const vClickOutside = {
   margin-right: 8px;
   width: 18px;
   height: 18px;
-  accent-color: #7c4dff;
+  accent-color: #faa643;
   vertical-align: middle;
 }
 
-.drop-item:hover { background: #f5f3ff; }
+.drop-item:hover { background: #fff8ef; }
 
 input[type="checkbox"], input[type="radio"] {
-  accent-color: #7c4dff;
+  accent-color: #faa643;
 }
 
 .chevron {
   width: 6px;
   height: 6px;
-  border-right: 2px solid #94a3b8;
-  border-bottom: 2px solid #94a3b8;
+  border-right: 2px solid #faa643;
+  border-bottom: 2px solid #faa643;
   transform: rotate(45deg);
   transition: 0.2s;
 }
 
-.chevron.open { transform: rotate(-135deg) translateY(-2px); }
+.chevron.open {
+  transform: rotate(-135deg) translateY(-2px);
+  border-right: 2px solid #faa643;
+  border-bottom: 2px solid #faa643;
+}
 
 @media (max-width: 900px) {
   .filter-row { gap: 12px; padding: 10px; }
@@ -258,42 +265,41 @@ input[type="checkbox"], input[type="radio"] {
     color: #e0e6f5;
   }
   .filter-pill.is-active {
-    border-color: #a78bfa;
-    background: #23204a;
-  }
-  .pill-label {
-    color: #a3aed6;
-    border-right-color: #353a50;
+    border-color: #faa643;
+    background: #2d2110;
   }
   .is-active .pill-label {
-    color: #a78bfa;
-    border-right-color: #a78bfa;
-  }
-  .pill-value {
-    color: #e0e6f5;
+    color: #faa643;
+    border-bottom-color: #faa643;
   }
   .pill-count {
-    background: #a78bfa;
+    background: #faa643;
     color: #23263a;
   }
   .pill-dropdown {
     background: #23263a;
-    border-color: #a78bfa;
+    border-color: #faa643;
     color: #e0e6f5;
     box-shadow: 0 10px 25px rgba(0,0,0,0.7);
   }
-  .drop-item {
-    background: #23263a;
-    color: #e0e6f5;
-  }
   .drop-item:hover {
     background: #2d2e4a;
-    color: #a78bfa;
+    color: #faa643;
   }
   .drop-item input[type="checkbox"], .drop-item input[type="radio"] {
-    accent-color: #a78bfa;
+    accent-color: #faa643;
     background: #23263a;
     color: #e0e6f5;
+  }
+  .chevron {
+    border-right-color: #faa643;
+    border-bottom-color: #faa643;
+  }
+  .chevron.open {
+    border-right-color: #faa643;
+    border-bottom-color: #faa643;
+  }
+
   }
   .chevron {
     border-right-color: #a3aed6;
@@ -303,5 +309,16 @@ input[type="checkbox"], input[type="radio"] {
     border-right-color: #a78bfa;
     border-bottom-color: #a78bfa;
   }
+
+</style>
+<style scoped>
+.option-types-heading {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #147393;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  letter-spacing: 0.01em;
+  font-family: 'Inter', -apple-system, sans-serif;
 }
 </style>
